@@ -1,0 +1,32 @@
+name: Evidence or correction
+description: Contribute a public source check, correction, or counterexample.
+title: "[Evidence] "
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim or correction
+      description: State one bounded claim and its population, measurement, unit, and period when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources and precise locators
+      description: Explain what each source supports and what it leaves unresolved. Label synthetic material.
+    validations:
+      required: true
+  - type: textarea
+    id: check
+    attributes:
+      label: Next check and falsifier
+      description: What observation could reject this claim? Distinguish a proposed check from an executed result.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public contribution
+      options:
+        - label: I have reviewed this contribution for private information and have the right to share its contents publicly.
+          required: true

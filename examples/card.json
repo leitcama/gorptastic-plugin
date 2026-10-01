@@ -1,0 +1,35 @@
+{
+  "schema": "gorptastic.evidence-card.v1",
+  "id": "scheduled-projects",
+  "kind": "source-check",
+  "claim": "Eight of ten scheduled pilot projects were online at the cutoff.",
+  "scope": {
+    "population": "The ten projects in the scheduled pilot cohort",
+    "measure": "Projects online at the reporting cutoff",
+    "unit": "Project count; not megawatts",
+    "period": "The synthetic pilot reporting period"
+  },
+  "sources": [
+    {
+      "id": "pilot-report",
+      "url": "https://example.org/pilot-report",
+      "title": "Synthetic pilot report for demonstration",
+      "locator": "Paragraphs 2 and 3",
+      "source_time": "2026-09-30",
+      "observed_at": "2026-09-30T18:00:00Z",
+      "supports": "Eight of ten scheduled projects were online; 12 of 40 requested megawatts were consumed.",
+      "limits": "The project count cannot establish an 80% consumed/requested power ratio or the state of all proposed projects.",
+      "artifact": "pilot-report.txt"
+    }
+  ],
+  "rival_explanation": "The project-count percentage and consumed/requested power ratio use different units and denominators.",
+  "check": {
+    "action": "Read the retained synthetic report and calculate each ratio separately.",
+    "observable": "Project-count proportion and consumed/requested megawatt ratio",
+    "comparison": "8/10 projects versus 12/40 megawatts",
+    "horizon": "One reading of the retained synthetic report",
+    "decision_rule": "Use 80% only for the scheduled project count and 30% for the consumed/requested power ratio.",
+    "falsifier": "The retained report's cohort definition or totals differ from the claim."
+  },
+  "limitations": "Synthetic fixture only. No factual result about real projects or experiment outcome is established."
+}

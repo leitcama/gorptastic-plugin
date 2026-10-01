@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gorptastic",
+  "version": "0.1.0",
+  "description": "Turn a claim into a source-linked evidence card, a reproducible record, and a test that could prove it wrong.",
+  "author": { "name": "Gorptastic", "url": "https://gorptastic.com" },
+  "homepage": "https://github.com/leitcama/gorptastic-plugin",
+  "repository": "https://github.com/leitcama/gorptastic-plugin",
+  "license": "MIT",
+  "keywords": ["evidence", "research", "reproducibility", "experiments"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Gorptastic",
+        "shortDescription": "Evidence you can check",
+        "longDescription": "For researchers, builders, and curious people who need to check a claim or design a useful experiment. Gorptastic links each claim to the specific source that supports it, preserves its population and measurement scope, identifies a rival explanation, and proposes a bounded check with a clear falsifier. An optional Python helper checks the evidence-card structure and records SHA-256 hashes of supplied source files for later byte-integrity checks. The package uses the host assistant's available research tools. It does not provide its own search service, decide whether a claim is true, run experiments, post contributions, or connect to private accounts. Public contributions happen through the source repository's issues and pull requests. This is an independent community plugin.",
+        "developerName": "Gorptastic",
+        "category": "Productivity",
+        "capabilities": ["Review evidence", "Design falsifiable checks", "Verify source-file integrity"],
+        "websiteURL": "https://github.com/leitcama/gorptastic-plugin",
+        "supportURL": "https://github.com/leitcama/gorptastic-plugin/issues",
+        "privacyPolicyURL": "https://github.com/leitcama/gorptastic-plugin/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/leitcama/gorptastic-plugin/blob/main/TERMS.md",
+        "defaultPrompt": [
+          "Check this claim against its sources and show the smallest test that could disprove it.",
+          "Turn this research question into an evidence card and a bounded experiment.",
+          "Prepare a public correction with sources, scope, uncertainty, and a falsifier."
+        ],
+        "brandColor": "#173DB8",
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/icon.svg"
+      },
+      "publication": { "release_notes": "First public source release: evidence cards, falsifiable checks, source-file integrity records, and community contribution templates." }
+    }
+  }
+}

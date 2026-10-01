@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence to experiment"
+  short_description: "Review sources and design a falsifiable check"
+  default_prompt: "Use $evidence-to-experiment to check this claim and propose the cheapest test that could disprove it."

@@ -1,0 +1,7 @@
+SYNTHETIC FIXTURE. This is not a real report or an observation about actual projects.
+
+The scheduled pilot cohort contains ten projects. Eight were online at the reporting cutoff.
+The cohort requested a total of 40 megawatts and consumed 12 megawatts at that cutoff.
+The report covers only this scheduled cohort, not all proposed projects.
+
+Therefore 8/10 is an 80% project-count proportion; 12/40 is a 30% consumed/requested power ratio.
