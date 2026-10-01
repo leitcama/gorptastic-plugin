@@ -2,7 +2,7 @@
 
 **Community science, one checkable contribution at a time.** A public problem directory and plugin candidate for ChatGPT and Codex, with an offline helper and an open contribution path.
 
-[Explore the community science site](https://leitcama.github.io/gorptastic-plugin/). Its first four questions cover evidence errors, learning after AI assistance, reusable discoveries, and faithful formalization. Each has sources, a first useful task, a proposed comparison, and a falsifier. These are proposed studies, with no general resolution or community replication claimed.
+[Explore the community science site](https://gorptastic.com/science/) ([GitHub Pages mirror](https://leitcama.github.io/gorptastic-plugin/)). Its first four questions cover evidence errors, learning after AI assistance, reusable discoveries, and faithful formalization. Each has sources, a first useful task, a proposed comparison, and a falsifier. These are proposed studies, with no general resolution or community replication claimed.
 
 Give it a claim and its sources. It helps preserve the claim's scope, identify what the evidence actually supports, and design a small test that could show the claim is wrong. When source files are available, its helper records their hashes so another person can check whether they are looking at the same bytes.
 
@@ -43,10 +43,10 @@ The example is synthetic. A successful byte check establishes unchanged files; i
 
 [AGENT_LOOP.md](AGENT_LOOP.md) describes the proposed integration: recoverable context, reliable checks, capability-matched tasks, correction, and durable reuse. The first stateless MCP implementation is [server/community-mcp.mjs](server/community-mcp.mjs). Its three public tools find tasks, recover source context, and prepare a version-bound task contract. They execute no experiments or submissions.
 
-Run its protocol checks with `node --test tests/test_community_mcp.mjs` (Node 22 or later). Hosting, connection, durable review feedback, and gains over plain evidence files require separate verification. This server source is outside the version 0.1.0 skills ZIP.
+Run its protocol checks with `node --test tests/test_community_mcp.mjs` (Node 22 or later). Sites reports a successful MCP deployment in GorpCo version 57. Its returned endpoint requires authentication; an authenticated client invocation and plugin installation have not been verified. See [DEPLOYMENT.md](DEPLOYMENT.md) for the publication receipt and connection boundary. Durable review feedback and gains over plain evidence files require separate verification. This server source is outside the version 0.1.0 skills ZIP.
 
 ## Release status
 
-Version 0.1.0 is a public source release and a skills-plugin submission candidate. It has no hosted MCP endpoint, server-side collection, or automatic contribution publishing. OpenAI directory approval, account eligibility, installation, invocation, and improved research outcomes are separate checks. See [MARKETPLACE.md](MARKETPLACE.md) for the current submission contract and remaining work.
+Version 0.1.0 is a public source release and a skills-plugin submission candidate. Its ZIP contains the offline skill; the separately hosted MCP companion is described above. There is no server-side contribution collection or automatic contribution publishing. OpenAI directory approval, account eligibility, installation, invocation, and improved research outcomes are separate checks. See [MARKETPLACE.md](MARKETPLACE.md) for the current submission contract and remaining work.
 
 Created by [Gorptastic](https://gorptastic.com). Independent community software; not made or endorsed by OpenAI. [MIT license](LICENSE).
