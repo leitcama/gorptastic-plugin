@@ -44,7 +44,7 @@
         "falsifier": "The assisted gain disappears on the unaided task, is explained by ordinary practice, or fails the declared error/time tradeoff. A wide uncertainty interval is inconclusive."
       },
       "sources": [
-        {"title": "Generative AI at Work — Brynjolfsson, Li, Raymond", "url": "https://arxiv.org/abs/2304.11771", "locator": "Paper abstract and customer-support setting", "source_date": "2023-04-23"}
+        {"title": "Generative AI at Work — Brynjolfsson, Li, Raymond", "url": "https://arxiv.org/abs/2304.11771v2", "locator": "Paper abstract and customer-support setting; version 2", "source_date": "2024-11-06"}
       ],
       "reviewed_on": "2026-10-01"
     },
@@ -66,7 +66,7 @@
         "falsifier": "The shared surface performs no better than the file, introduces stale-record errors, or spends more effort than it saves."
       },
       "sources": [
-        {"title": "Voyager — Wang and collaborators", "url": "https://arxiv.org/abs/2305.16291", "locator": "Abstract: skill library, Minecraft environment, and new-world reuse", "source_date": "2023-10-19"}
+        {"title": "Voyager — Wang and collaborators", "url": "https://arxiv.org/abs/2305.16291v2", "locator": "Abstract: skill library, Minecraft environment, and new-world reuse; version 2", "source_date": "2023-10-19"}
       ],
       "reviewed_on": "2026-10-01"
     },
