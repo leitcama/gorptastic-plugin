@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gorptastic community science: open questions, source-linked evidence, small experiments, and public corrections.">
+  <meta name="theme-color" content="#173db8">
+  <title>Gorptastic — Community science</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#questions">Skip to open questions</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Gorptastic community science home"><span class="brand-g" aria-hidden="true">g</span><span>Gorptastic<span class="brand-note">Community science</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#questions">Questions</a>
+      <a href="#contribute">Contribute</a>
+      <a href="#tools">Tools</a>
+    </nav>
+  </header>
+  <main>
+    <div class="opening">
+      <div><h1>Open questions</h1><p>Bring a source, a counterexample, or a check someone else can repeat.</p></div>
+      <a class="propose" href="https://github.com/leitcama/gorptastic-plugin/issues/new?template=question.yml">Propose a question</a>
+    </div>
+    <div class="workspace">
+      <section id="questions" aria-labelledby="question-list-heading">
+        <h2 id="question-list-heading" class="sr-only">Explore research questions</h2>
+        <div class="controls">
+          <label for="search">Find a question</label>
+          <input id="search" type="search" placeholder="Search a question, idea, or method" autocomplete="off">
+          <div class="areas" role="group" aria-label="Research area">
+            <button type="button" data-area="all" aria-pressed="true">All questions</button>
+            <button type="button" data-area="evidence" aria-pressed="false">Evidence</button>
+            <button type="button" data-area="learning" aria-pressed="false">AI &amp; learning</button>
+            <button type="button" data-area="proof" aria-pressed="false">Formal proofs</button>
+          </div>
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite">Loading public questions…</p>
+        <div id="problem-list"></div>
+        <div id="empty" class="empty" hidden><h3>No matching questions</h3><p>Try a broader phrase or show all research areas.</p><button id="clear" type="button">Clear filters</button></div>
+        <p id="load-error" class="empty" hidden>Questions could not be loaded. <a href="questions.json">Read the question records</a> or <a href="https://github.com/leitcama/gorptastic-plugin/issues/new?template=question.yml">propose a question</a>.</p>
+        <noscript><p>JavaScript is needed for the interactive directory. <a href="questions.json">Read the public question records</a> or visit the <a href="https://github.com/leitcama/gorptastic-plugin">source repository</a>.</p></noscript>
+      </section>
+      <aside>
+        <section id="contribute" class="aside-section">
+          <h2>Contribute one useful piece</h2>
+          <p>You can check a source, document a failed replication, sharpen a question, or test a rival explanation.</p>
+          <a class="primary" href="https://github.com/leitcama/gorptastic-plugin/issues/new?template=evidence.yml">Add evidence or a correction</a>
+          <p class="note">Submissions are public on GitHub. Maintainers review them before changing this directory. Share only material you have the right to publish.</p>
+          <a href="https://github.com/leitcama/gorptastic-plugin/blob/main/CONTRIBUTING.md">Contribution guide</a>
+        </section>
+        <section id="tools" class="aside-section">
+          <h2>Make your work repeatable</h2>
+          <p>The Gorptastic plugin helps turn a claim into an evidence card and a test that could prove it wrong.</p>
+          <a class="secondary" href="https://github.com/leitcama/gorptastic-plugin/releases/tag/v0.1.0">Get the plugin package</a>
+          <a href="https://github.com/leitcama/gorptastic-plugin/blob/main/examples/card.json">Example evidence card</a>
+          <p class="note">Public source release and submission candidate. No OpenAI directory approval or listing is claimed.</p>
+        </section>
+        <section class="aside-section ledger">
+          <h2>What counts as progress?</h2>
+          <dl><dt>Evidence</dt><dd>A source tied to an exact claim.</dd><dt>Experiment</dt><dd>A comparison with a rule that can reject the idea.</dd><dt>Result</dt><dd>An observed outcome someone else can check.</dd><dt>Correction</dt><dd>A visible revision that preserves what changed.</dd></dl>
+          <p class="note">These four questions are curator-proposed studies. No general resolution or community replication is claimed.</p>
+        </section>
+      </aside>
+    </div>
+    <section class="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">A shared notebook for things we can check</h2>
+      <p>Questions stay attached to their sources, assumptions, proposed checks, and unresolved limits. Small contributions and negative results are welcome. A problem stays open until evidence meets its stated acceptance rule. A failed check narrows a claim to the conditions tested.</p>
+      <p class="note">Inspired by the question-and-source structure of <a href="https://www.proofatlas.ai/open-problems/">ProofAtlas</a>. Gorptastic is an independent project. This directory has no importance ranking.</p>
+    </section>
+  </main>
+  <footer><span>Gorptastic · Community science</span><a href="questions.json">Question records</a><a href="https://github.com/leitcama/gorptastic-plugin">Source &amp; history</a><a href="https://github.com/leitcama/gorptastic-plugin/blob/main/PRIVACY.md">Privacy</a><a href="https://gorptastic.com">Gorptastic.com</a></footer>
+</body>
+</html>

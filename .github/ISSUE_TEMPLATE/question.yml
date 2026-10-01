@@ -1,0 +1,32 @@
+name: Propose a research question
+description: Add a bounded open question with sources and a first useful check.
+title: "[Question] "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Exact question
+      description: What is unknown, and who could use an answer? Keep the scope small enough for a checkable first contribution.
+    validations:
+      required: true
+  - type: textarea
+    id: known
+    attributes:
+      label: What is known and what remains open
+      description: Link public sources and precise locators. Preserve population, units, dates, and uncertainty.
+    validations:
+      required: true
+  - type: textarea
+    id: check
+    attributes:
+      label: First task, comparison, and falsifier
+      description: Propose a bounded check and describe the result that could reject the idea. Do not report a proposed study as completed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public contribution
+      options:
+        - label: I have reviewed this contribution for private information and have the right to share its contents publicly.
+          required: true

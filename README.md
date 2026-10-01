@@ -1,6 +1,8 @@
 # Gorptastic
 
-**Evidence you can check.** A public plugin candidate for ChatGPT and Codex, with an offline helper and an open contribution path.
+**Community science, one checkable contribution at a time.** A public problem directory and plugin candidate for ChatGPT and Codex, with an offline helper and an open contribution path.
+
+[Explore the community science site](https://leitcama.github.io/gorptastic-plugin/). Its first four questions cover evidence errors, learning after AI assistance, reusable discoveries, and faithful formalization. Each has sources, a first useful task, a proposed comparison, and a falsifier. These are proposed studies, with no general resolution or community replication claimed.
 
 Give it a claim and its sources. It helps preserve the claim's scope, identify what the evidence actually supports, and design a small test that could show the claim is wrong. When source files are available, its helper records their hashes so another person can check whether they are looking at the same bytes.
 

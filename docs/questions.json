@@ -1,0 +1,97 @@
+{
+  "schema": "gorptastic.community-questions.v1",
+  "edition": "2026-10-01",
+  "curation": "Curator-proposed community studies; no importance ranking",
+  "questions": [
+    {
+      "id": "g-001",
+      "area": "evidence",
+      "area_label": "Evidence & measurement",
+      "status": "Open · Fixture available",
+      "title": "Can a structured evidence review prevent a correct number from becoming a false claim?",
+      "summary": "A percentage can survive while its population, unit, or meaning changes. Test whether an explicit evidence card helps catch that shift.",
+      "known": "The public Gorptastic fixture distinguishes eight of ten projects online (80%) from 12 of 40 requested megawatts consumed (30%). One independent synthetic skill trial preserved both scopes. The offline helper can bind a card to unchanged source-file bytes.",
+      "limit": "One synthetic trial does not establish better research performance. A valid card or matching hash does not establish factual support. Effectiveness on unfamiliar public sources remains unmeasured.",
+      "task": "Contribute a rights-cleared source passage and two interpretations: one faithful, one with a denominator, unit, population, or time-window error. Supply a source-grounded answer key and keep evaluation cases separate from worked examples.",
+      "check": {
+        "comparison": "Ordinary source review versus the evidence-card workflow on the same held-out cases, with assignment and answer keys declared before testing.",
+        "measure": "Scope errors caught, false corrections, source-supported conclusions, review time, and total model/tool cost.",
+        "horizon": "One declared evaluation batch. The batch size and acceptance threshold must be set before results are inspected.",
+        "decision_rule": "A proposed rule: accept a benefit only if scope errors fall without exceeding a predeclared increase in false corrections and review effort. Thresholds are design choices, not measured results.",
+        "falsifier": "The workflow misses the same scope errors, creates more unsupported corrections, or costs more than the declared benefit allows."
+      },
+      "sources": [
+        {"title": "Public synthetic fixture", "url": "https://github.com/leitcama/gorptastic-plugin/blob/main/examples/sources/pilot-report.txt", "locator": "Scheduled cohort and project/power totals; synthetic", "source_date": "2026-10-01"},
+        {"title": "Candidate verification record", "url": "https://github.com/leitcama/gorptastic-plugin/blob/main/VERIFICATION.md", "locator": "Independent synthetic forward-test and its limits", "source_date": "2026-10-01"}
+      ],
+      "reviewed_on": "2026-10-01"
+    },
+    {
+      "id": "g-002",
+      "area": "learning",
+      "area_label": "AI & learning",
+      "status": "Open · Study proposed",
+      "title": "When AI helps someone perform a task, what can they still do after the help is removed?",
+      "summary": "Separate assisted performance, retained skill on a familiar task, and transfer to an unfamiliar task.",
+      "known": "Generative AI at Work studies an AI assistant in customer support and reports productivity effects in that setting. Its findings motivate investigating how assistance and learning relate.",
+      "limit": "Results from customer support do not establish transfer to every new task, population, or assistant. This proposed Gorptastic study has not been run.",
+      "task": "Propose a small, public, non-sensitive task pair within a named task family, with an independently checkable answer and a frozen scoring rubric. Explain what makes the second task an unseen transfer test rather than a repeat of the first.",
+      "check": {
+        "comparison": "A declared unaided baseline, assisted practice, and a fresh unaided task in the named family; include an equal-time practice-only comparison, blind scoring, and counterbalanced task order where feasible.",
+        "measure": "Answer correctness, error type, completion time, and performance on the fresh unaided task.",
+        "horizon": "One declared practice session and a predeclared delayed transfer check.",
+        "decision_rule": "Define the smallest useful retained gain and allowed time/error tradeoff before testing. Treat any chosen threshold as a proposal.",
+        "falsifier": "The assisted gain disappears on the unaided task, is explained by ordinary practice, or fails the declared error/time tradeoff. A wide uncertainty interval is inconclusive."
+      },
+      "sources": [
+        {"title": "Generative AI at Work — Brynjolfsson, Li, Raymond", "url": "https://arxiv.org/abs/2304.11771", "locator": "Paper abstract and customer-support setting", "source_date": "2023-04-23"}
+      ],
+      "reviewed_on": "2026-10-01"
+    },
+    {
+      "id": "g-003",
+      "area": "learning",
+      "area_label": "AI & reusable knowledge",
+      "status": "Open · Study proposed",
+      "title": "When does a checked discovery make the next person's or agent's work easier?",
+      "summary": "Compare starting fresh, receiving a plain evidence file, and retrieving the same record through a shared library.",
+      "known": "Voyager reports an executable skill library and environmental feedback in Minecraft, including reuse in a new Minecraft world. It provides a concrete example of reusable external knowledge.",
+      "limit": "Minecraft results do not establish gains in general research or show that a shared website is better than a plain file. This community study has no independently measured outcomes yet.",
+      "task": "Contribute one small checked procedure, an unfamiliar task it might help with, and a reproduction record. Record the full initial review cost; any later amortization must name the reuse count. Include a stale or misleading record as a negative control when safe.",
+      "check": {
+        "comparison": "Fresh start; the checked record in a plain file; the identical record through a retrieval surface. Hold the task, allowed tools, and model version fixed.",
+        "measure": "Correct authorized outcomes, repeated calls, retrieval/review effort, errors, and total cost.",
+        "horizon": "One bounded task batch using a pinned library snapshot.",
+        "decision_rule": "Declare the gain and maximum review/retrieval cost before running. The shared surface must show added value over the same record in a file.",
+        "falsifier": "The shared surface performs no better than the file, introduces stale-record errors, or spends more effort than it saves."
+      },
+      "sources": [
+        {"title": "Voyager — Wang and collaborators", "url": "https://arxiv.org/abs/2305.16291", "locator": "Abstract: skill library, Minecraft environment, and new-world reuse", "source_date": "2023-10-19"}
+      ],
+      "reviewed_on": "2026-10-01"
+    },
+    {
+      "id": "g-004",
+      "area": "proof",
+      "area_label": "Formal proofs & assumptions",
+      "status": "Open · Study proposed",
+      "title": "Can we turn a small prose claim into a formal statement without changing what it means?",
+      "summary": "Keep proof checking, the meaning of the formal statement, and its assumptions visible as separate checks.",
+      "known": "Lean's proof-validation guidance distinguishes an accepted proof from the intended meaning of its theorem statement. Axiom dependencies can be inspected, including dependencies on proof placeholders.",
+      "limit": "A successful build alone cannot show that a formal statement faithfully captures the original prose. No formal theorem or resolution is claimed by this question.",
+      "task": "Formalize this bounded claim: the proportion of projects online does not determine the proportion of requested power being used. Give two finite examples with the same project counts and requested-power totals but different power-use totals. Define online, map each prose term to the formal statement, and keep this Gorptastic work separate from any upstream contribution.",
+      "check": {
+        "comparison": "An independent reading of the original claim versus the formal statement, followed by checking the declared proof and its transitive axiom dependencies.",
+        "measure": "Changed or missing assumptions, unintended weakening, proof-checker result, and remaining axiom dependencies.",
+        "horizon": "One lemma with pinned source and toolchain versions.",
+        "decision_rule": "Require a faithful formulation review and a successful check with declared acceptable axioms. Reject placeholder dependencies and unexplained extra assumptions.",
+        "falsifier": "The proof relies on a placeholder, an unapproved axiom, or a statement whose meaning differs from the source claim."
+      },
+      "sources": [
+        {"title": "Lean: Validating a Proof", "url": "https://lean-lang.org/doc/reference/latest/ValidatingProofs/", "locator": "Proof validity, theorem meaning, and dependency checks", "source_date": null},
+        {"title": "Lean: Axioms", "url": "https://lean-lang.org/doc/reference/latest/Axioms/", "locator": "Axiom dependencies and sorryAx", "source_date": null}
+      ],
+      "reviewed_on": "2026-10-01"
+    }
+  ]
+}
