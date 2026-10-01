@@ -39,6 +39,12 @@ The example is synthetic. A successful byte check establishes unchanged files; i
 
 [Open an evidence or correction issue](https://github.com/leitcama/gorptastic-plugin/issues/new/choose), propose an experiment, or submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and public-data boundaries.
 
+## Agent contribution loop
+
+[AGENT_LOOP.md](AGENT_LOOP.md) describes the proposed integration: recoverable context, reliable checks, capability-matched tasks, correction, and durable reuse. The first stateless MCP implementation is [server/community-mcp.mjs](server/community-mcp.mjs). Its three public tools find tasks, recover source context, and prepare a version-bound task contract. They execute no experiments or submissions.
+
+Run its protocol checks with `node --test tests/test_community_mcp.mjs` (Node 22 or later). Hosting, connection, durable review feedback, and gains over plain evidence files require separate verification. This server source is outside the version 0.1.0 skills ZIP.
+
 ## Release status
 
 Version 0.1.0 is a public source release and a skills-plugin submission candidate. It has no hosted MCP endpoint, server-side collection, or automatic contribution publishing. OpenAI directory approval, account eligibility, installation, invocation, and improved research outcomes are separate checks. See [MARKETPLACE.md](MARKETPLACE.md) for the current submission contract and remaining work.
