@@ -39,7 +39,11 @@ test("capability matching and pinned contracts preserve proposed work and caller
   assert.match(contract.structuredContent.authority, /grants no/);
   assert.equal((await call("get_task_contract", { question_id: "g-004", expected_revision: "0".repeat(64) })).isError, true);
   assert.equal((await call("get_evidence_context", { question_id: "g-999" })).isError, true);
-  assert.equal((await call("submit_contribution", {})).isError, true);
+  const unknown = await (await handler(request(rpc("tools/call", { name: "submit_contribution", arguments: {} })))).json();
+  assert.equal(unknown.error.code, -32602);
+  const nullArgs = await (await handler(request(rpc("tools/call", { name: "find_open_tasks", arguments: null })))).json();
+  assert.equal(nullArgs.error.code, -32602);
+  assert.match(contract.structuredContent.acceptance_state, /pinned toolchain/);
   assert.equal((await call("find_open_tasks", { limit: 0 })).isError, true);
   assert.equal((await call("find_open_tasks", { execute: true })).isError, true);
 });
@@ -50,6 +54,16 @@ test("transport rejects hostile origins, unsupported versions, malformed and ove
   assert.equal((await handler(request("not json"))).status, 400);
   assert.equal((await handler(request("x".repeat(65537)))).status, 400);
   assert.equal((await handler(request([rpc("tools/list")]))).status, 400);
+  for (const version of ["2025-03-26", "2025-06-18", "2025-11-25"]) {
+    const badResponse = await handler(request("not json", { "MCP-Protocol-Version": version }));
+    const bad = await badResponse.json();
+    assert.equal(badResponse.status, 400);
+    assert.equal(Object.hasOwn(bad, "id"), false);
+    assert.equal(bad.jsonrpc, version === "2025-11-25" ? "2.0" : undefined);
+    const recoverable = await (await handler(request({ jsonrpc: "2.0", id: 37, params: {} }, { "MCP-Protocol-Version": version }))).json();
+    assert.equal(recoverable.id, 37);
+    assert.equal(recoverable.error.code, -32600);
+  }
   assert.equal((await handler(new Request("https://gorptastic.com/mcp"))).status, 405);
   const snapshot = JSON.parse(bytes);
   const isolated = createCommunityServer(snapshot, revision);

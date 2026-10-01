@@ -44,7 +44,7 @@ const object = (value) => value !== null && typeof value === "object" && !Array.
 const json = (body, status = 200, extra = {}) => new Response(JSON.stringify(body), {
   status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff", ...extra },
 });
-const rpcError = (id, code, message, status = 200) => json({ jsonrpc: "2.0", id, error: { code, message } }, status);
+const rpcError = (id, code, message, status = 200) => json({ jsonrpc: "2.0", ...(id === undefined ? {} : { id }), error: { code, message } }, status);
 
 function validateArguments(name, input) {
   if (!object(input)) throw new InputError("Arguments must be an object.");
@@ -99,7 +99,7 @@ export function createCommunityServer(catalog, revision) {
     const submission = new URL("https://github.com/leitcama/gorptastic-plugin/issues/new");
     submission.searchParams.set("template", "evidence.yml");
     submission.searchParams.set("title", "[" + q.id.toUpperCase() + "] Evidence or correction");
-    return { revision, contract_id: q.id + "@" + revision, question_id: q.id, state: "draft_contribution_task", task: q.task, required_artifact: { claim: "Exact claim and scope", sources: "Public, rights-cleared URLs and exact locators", method: "Comparison, units, population, assumptions and budget", observation: "Observed result, or explicitly proposed work", limits: "Unresolved evidence and rival explanations" }, proposed_check: q.check, acceptance_state: "The study's numerical thresholds and sample size must be preregistered before evaluation; this tool does not choose them.", caller_effort_limit_minutes: input.effort_minutes ?? null, effort_limit_enforced_by: "Caller; this server executes no experiment.", stop_condition: "Stop when the caller's effort limit is reached, evidence is insufficient, or the task requires a new permission. Preserve unresolved work.", authority: "The caller's principal authorizes actions. This record grants no account, compute, execution, disclosure, or publication access.", publication: { destination: submission.href, mechanism: "Public GitHub issue; explicit rights and public-disclosure confirmation in the contribution form", state: "draft_not_submitted", review: "Maintainer review precedes any directory change" }, interpretation: note };
+    return { revision, contract_id: q.id + "@" + revision, question_id: q.id, state: "draft_contribution_task", task: q.task, required_artifact: { claim: "Exact claim and scope", sources: "Public, rights-cleared URLs and exact locators", method: "Comparison, units, population, assumptions and budget", observation: "Observed result, or explicitly proposed work", limits: "Unresolved evidence and rival explanations" }, proposed_check: q.check, acceptance_state: q.area === "proof" ? "Faithful-formulation review and proof-checker acceptance with pinned toolchain and declared axioms; reject placeholders and unexplained assumptions." : "Executing the proposed empirical study requires preregistered numerical thresholds and sample size. A draft contribution alone does not establish a study result.", caller_effort_limit_minutes: input.effort_minutes ?? null, effort_limit_enforced_by: "Caller; this server executes no experiment.", stop_condition: "Stop when the caller's effort limit is reached, evidence is insufficient, or the task requires a new permission. Preserve unresolved work.", authority: "The caller's principal authorizes actions. This record grants no account, compute, execution, disclosure, or publication access.", publication: { destination: submission.href, mechanism: "Public GitHub issue; explicit rights and public-disclosure confirmation in the contribution form", state: "draft_not_submitted", review: "Maintainer review precedes any directory change" }, interpretation: note };
   }
   return async function handleMcp(request) {
     const url = new URL(request.url);
@@ -113,12 +113,16 @@ export function createCommunityServer(catalog, revision) {
     if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get("Content-Type") ?? "")) return json({ error: "Use application/json." }, 415);
     const accept = request.headers.get("Accept") ?? "*/*";
     if (!accept.includes("application/json") && !accept.includes("*/*")) return json({ error: "JSON responses are required." }, 406);
+    // November permits an omitted error ID. Earlier MCP schemas require an ID;
+    // reject unreadable messages as HTTP errors rather than fabricate one.
+    const rejectMessage = (code, detail, id) => id !== undefined || protocol === "2025-11-25" ? rpcError(id, code, detail, 400) : json({ error: { code, message: detail } }, 400);
     let message;
-    try { message = await readMessage(request); } catch (error) { return rpcError(null, -32700, error instanceof InputError ? error.message : "Invalid UTF-8 JSON.", 400); }
-    if (!object(message) || message.jsonrpc !== "2.0" || typeof message.method !== "string" || (Object.hasOwn(message, "id") && !(typeof message.id === "string" || Number.isSafeInteger(message.id))) || (Object.hasOwn(message, "params") && !object(message.params))) return rpcError(null, -32600, "Invalid JSON-RPC request.", 400);
+    try { message = await readMessage(request); } catch (error) { return rejectMessage(-32700, error instanceof InputError ? error.message : "Invalid UTF-8 JSON."); }
+    const id = object(message) && (typeof message.id === "string" || Number.isSafeInteger(message.id)) ? message.id : undefined;
+    if (!object(message) || message.jsonrpc !== "2.0" || typeof message.method !== "string" || (Object.hasOwn(message, "id") && id === undefined) || (Object.hasOwn(message, "params") && !object(message.params))) return rejectMessage(-32600, "Invalid JSON-RPC request.", id);
     if (!Object.hasOwn(message, "id")) {
       if (message.method.startsWith("notifications/")) return new Response(null, { status: 202 });
-      return rpcError(null, -32600, "A request ID is required.", 400);
+      return rejectMessage(-32600, "A request ID is required.");
     }
     const params = message.params ?? {};
     let result;
@@ -129,6 +133,8 @@ export function createCommunityServer(catalog, revision) {
     else if (message.method === "tools/list") result = { tools };
     else if (message.method === "tools/call") {
       if (typeof params.name !== "string") return rpcError(message.id, -32602, "A tool name is required.");
+      if (!tools.some((tool) => tool.name === params.name)) return rpcError(message.id, -32602, "Unknown tool.");
+      if (Object.hasOwn(params, "arguments") && !object(params.arguments)) return rpcError(message.id, -32602, "Tool arguments must be an object.");
       try { const output = call(params.name, params.arguments ?? {}); result = { content: [{ type: "text", text: JSON.stringify(output) }], structuredContent: output, isError: false }; }
       catch (error) { if (!(error instanceof InputError)) throw error; result = { content: [{ type: "text", text: error.message }], isError: true }; }
     } else return rpcError(message.id, -32601, "Method not supported.");
